@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Golden Crumb Bakery</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Georgia,serif;background:#faf6ef;color:#3a2210}
+nav{background:#3a2210;padding:16px 32px;display:flex;justify-content:space-between;align-items:center}
+nav a{color:#e8c96a;text-decoration:none;margin-left:20px;font-size:.85rem}
+.hero{background:linear-gradient(135deg,#fdf8f0,#eddcb0);text-align:center;padding:100px 20px}
+.hero h1{font-size:3.5rem;color:#3a2210;margin-bottom:10px}
+.hero em{color:#b8882a}
+.hero p{color:#8a6a4a;margin:12px auto 28px;max-width:400px;font-family:sans-serif;font-size:.95rem}
+.btn{background:#3a2210;color:white;padding:12px 32px;text-decoration:none;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+.btn:hover{background:#b8882a}
+section{padding:70px 32px}
+h2{font-size:2.2rem;color:#3a2210;text-align:center;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:960px;margin:0 auto}
+.card{background:white;padding:28px;border:1px solid #e8d5b0}
+.card:hover{background:#f2e8d5}
+.card-top{display:flex;justify-content:space-between;margin-bottom:8px}
+.card h3{font-size:1.2rem}
+.price{color:#b8882a}
+.card p{font-size:.85rem;color:#8a6a4a;font-family:sans-serif;line-height:1.6}
+.about{background:#3a2210;color:white;text-align:center}
+.about h2{color:white}
+.about p{color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;font-family:sans-serif;font-size:.9rem;line-height:1.8}
+.contact{background:#f2e8d5}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:860px;margin:0 auto}
+.contact h2{text-align:left;font-size:1.8rem;margin-bottom:24px}
+.info{font-family:sans-serif;font-size:.88rem;color:#8a6a4a;line-height:2}
+.form{display:flex;flex-direction:column;gap:12px}
+.form input,.form textarea{padding:10px;border:1px solid #e8d5b0;background:white;font-size:.9rem;font-family:sans-serif;width:100%}
+.form textarea{height:80px;resize:none}
+footer{background:#3a2210;color:rgba(255,255,255,.4);text-align:center;padding:24px;font-size:.8rem;font-family:sans-serif}
+@media(max-width:600px){.contact-grid{grid-template-columns:1fr}.hero h1{font-size:2.5rem}}
+</style>
+</head>
+<body>
+<nav>
+  <span style="color:#e8c96a;font-style:italic;font-size:1.1rem">Golden Crumb Bakery</span>
+  <div><a href="#menu">Menu</a><a href="#about">Story</a><a href="#contact">Contact</a></div>
+</nav>
+
+<div class="hero">
+  <h1>Golden Crumb <em>Bakery</em></h1>
+  <p>Baked fresh every morning — made with love, tradition, and the finest ingredients.</p>
+  <a href="#contact" class="btn">Order Now</a>
+</div>
+
+<section id="menu">
+  <h2>Our Menu</h2>
+  <div class="grid">
+    <div class="card"><div class="card-top"><h3>Croissants</h3><span class="price">$3.00</span></div><p>Flaky, buttery layers baked golden every morning.</p></div>
+    <div class="card"><div class="card-top"><h3>Sourdough</h3><span class="price">$7.00</span></div><p>Naturally leavened with a crispy crust and chewy crumb.</p></div>
+    <div class="card"><div class="card-top"><h3>Cinnamon Rolls</h3><span class="price">$4.00</span></div><p>Swirled with cinnamon and topped with creamy icing.</p></div>
+    <div class="card"><div class="card-top"><h3>Cookies</h3><span class="price">$2.50</span></div><p>Thick, chewy, and baked fresh daily.</p></div>
+    <div class="card"><div class="card-top"><h3>Muffins</h3><span class="price">$2.50</span></div><p>Rotating seasonal flavors with a golden top.</p></div>
+    <div class="card"><div class="card-top"><h3>Custom Cakes</h3><span class="price">$35+</span></div><p>Made to order for any celebration.</p></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h2>Our Story</h2>
+  <p>Founded in 2005, Golden Crumb is a family-owned bakery dedicated to baking delicious goods every morning using natural, quality ingredients passed down through generations.</p>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div>
+      <h2>Visit Us</h2>
+      <div class="info">
+        📍 123 Main St, Springfield, USA<br>
+        🕐 Open 7am – 5pm, 7 Days a Week<br>
+        📞 (555) 123-4567<br>
+        ✉️ hello@goldencrumb.com
+      </div>
+    </div>
+    <div class="form">
+      <input type="text" placeholder="Your name">
+      <input type="email" placeholder="your@email.com">
+      <textarea placeholder="Your message..."></textarea>
+      <a href="#" class="btn">Send Message</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2005–2026 Golden Crumb Bakery · All Rights Reserved</footer>
+</body>
+</html>
