@@ -1,92 +1,951 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Golden Crumb Bakery</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Georgia,serif;background:#faf6ef;color:#3a2210}
-nav{background:#3a2210;padding:16px 32px;display:flex;justify-content:space-between;align-items:center}
-nav a{color:#e8c96a;text-decoration:none;margin-left:20px;font-size:.85rem}
-.hero{background:linear-gradient(135deg,#fdf8f0,#eddcb0);text-align:center;padding:100px 20px}
-.hero h1{font-size:3.5rem;color:#3a2210;margin-bottom:10px}
-.hero em{color:#b8882a}
-.hero p{color:#8a6a4a;margin:12px auto 28px;max-width:400px;font-family:sans-serif;font-size:.95rem}
-.btn{background:#3a2210;color:white;padding:12px 32px;text-decoration:none;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
-.btn:hover{background:#b8882a}
-section{padding:70px 32px}
-h2{font-size:2.2rem;color:#3a2210;text-align:center;margin-bottom:40px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:960px;margin:0 auto}
-.card{background:white;padding:28px;border:1px solid #e8d5b0}
-.card:hover{background:#f2e8d5}
-.card-top{display:flex;justify-content:space-between;margin-bottom:8px}
-.card h3{font-size:1.2rem}
-.price{color:#b8882a}
-.card p{font-size:.85rem;color:#8a6a4a;font-family:sans-serif;line-height:1.6}
-.about{background:#3a2210;color:white;text-align:center}
-.about h2{color:white}
-.about p{color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;font-family:sans-serif;font-size:.9rem;line-height:1.8}
-.contact{background:#f2e8d5}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:860px;margin:0 auto}
-.contact h2{text-align:left;font-size:1.8rem;margin-bottom:24px}
-.info{font-family:sans-serif;font-size:.88rem;color:#8a6a4a;line-height:2}
-.form{display:flex;flex-direction:column;gap:12px}
-.form input,.form textarea{padding:10px;border:1px solid #e8d5b0;background:white;font-size:.9rem;font-family:sans-serif;width:100%}
-.form textarea{height:80px;resize:none}
-footer{background:#3a2210;color:rgba(255,255,255,.4);text-align:center;padding:24px;font-size:.8rem;font-family:sans-serif}
-@media(max-width:600px){.contact-grid{grid-template-columns:1fr}.hero h1{font-size:2.5rem}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golden Crumb Bakery | Freshly Baked Every Morning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #fdf8f0;
+      --warm: #faf3e6;
+      --gold: #c4872a;
+      --gold-light: #e8a84a;
+      --brown: #3d2b0f;
+      --brown-light: #6b4c1e;
+      --muted: #8a7560;
+      --border: rgba(61,43,15,0.12);
+      --charcoal: #1c1508;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(253,248,240,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* SVG LOGO */
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--brown);
+      letter-spacing: 0.02em;
+    }
+
+    .logo-tagline {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    nav a {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.3s;
+      font-weight: 400;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    .nav-order {
+      background: var(--gold);
+      color: white !important;
+      padding: 10px 24px;
+      border-radius: 2px;
+      font-weight: 500;
+      transition: background 0.3s !important;
+    }
+
+    .nav-order:hover { background: var(--brown) !important; }
+
+    /* HERO - Full width with overlay, different from Sunrise split */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 82px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(61,43,15,0.55) 0%, rgba(61,43,15,0.75) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      padding: 0 40px;
+    }
+
+    .hero-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 24px;
+      font-weight: 400;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      color: var(--cream);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: rgba(253,248,240,0.7);
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: white;
+      padding: 15px 36px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--brown); }
+
+    .btn-ghost {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(253,248,240,0.6);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s;
+      border: 1px solid rgba(253,248,240,0.3);
+      padding: 15px 28px;
+      border-radius: 2px;
+    }
+
+    .btn-ghost:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+    .hero-info {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(253,248,240,0.15);
+      justify-content: center;
+    }
+
+    .hero-info-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(253,248,240,0.4);
+      margin-bottom: 6px;
+    }
+
+    .hero-info-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--cream);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(253,248,240,0.4);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* DIVIDER */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 60px;
+      margin: 60px 0;
+    }
+
+    .divider-line { flex: 1; height: 1px; background: var(--border); }
+    .divider-icon { color: var(--gold); font-size: 1.1rem; }
+
+    /* STATS */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-item {
+      padding: 36px 40px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* MENU */
+    .menu {
+      padding: 80px 60px;
+      background: var(--warm);
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-header .tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      color: var(--brown);
+    }
+
+    .section-header h2 em { font-style: italic; color: var(--gold); }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 12px;
+      font-weight: 300;
+    }
+
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 48px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: hidden;
+    }
+
+    .tab {
+      padding: 12px 36px;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-family: 'Jost', sans-serif;
+      transition: all 0.3s;
+      border-right: 1px solid var(--border);
+    }
+
+    .tab:last-child { border-right: none; }
+    .tab.active { background: var(--brown); color: var(--cream); }
+    .tab:hover:not(.active) { background: rgba(61,43,15,0.05); color: var(--brown); }
+
+    .menu-panel { display: none; }
+    .menu-panel.active { display: block; }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .menu-card {
+      background: var(--cream);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(61,43,15,0.1);
+    }
+
+    .menu-card-img {
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .menu-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .menu-card:hover .menu-card-img img { transform: scale(1.05); }
+
+    .menu-card-body {
+      padding: 20px;
+    }
+
+    .menu-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 8px;
+    }
+
+    .menu-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--brown);
+    }
+
+    .menu-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .menu-card p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .menu-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 10px;
+      padding: 3px 10px;
+      border: 1px solid rgba(196,135,42,0.3);
+      border-radius: 10px;
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 80px 60px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+      border-top: 1px solid var(--border);
+    }
+
+    .about-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding-top: 6px;
+    }
+
+    .about-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 400;
+      color: var(--brown);
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+
+    .about-content h2 em { font-style: italic; color: var(--gold); }
+
+    .about-content p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    .about-content p strong { color: var(--brown); font-weight: 500; }
+
+    .about-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .badge {
+      padding: 8px 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* VISIT */
+    .visit {
+      padding: 80px 60px;
+      background: var(--brown);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .visit-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+
+    .visit-block p,
+    .visit-block address {
+      font-size: 0.85rem;
+      color: rgba(253,248,240,0.55);
+      line-height: 2;
+      font-style: normal;
+      font-weight: 300;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: rgba(253,248,240,0.55);
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(253,248,240,0.08);
+      font-weight: 300;
+    }
+
+    .hours-row span:last-child { color: var(--gold-light); }
+
+    .order-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .order-block p {
+      font-size: 0.82rem;
+      color: rgba(253,248,240,0.5);
+      margin-bottom: 24px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .btn-order {
+      display: inline-block;
+      background: var(--gold);
+      color: white;
+      padding: 14px 32px;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      transition: background 0.3s;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-order:hover { background: var(--gold-light); }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 60px;
+      background: var(--charcoal);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content > * {
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+    .hero-content > *:nth-child(5) { animation-delay: 0.7s; }
+
+    /* RESPONSIVE */
+    @media(max-width: 900px) {
+      nav { padding: 16px 20px; }
+      nav ul { display: none; }
+      .hero-content { padding: 0 24px; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .menu { padding: 60px 24px; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; padding: 60px 24px; gap: 20px; }
+      .visit { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+      .divider { padding: 0 24px; }
+      footer { padding: 20px 24px; flex-direction: column; text-align: center; }
+      .hero-info { flex-direction: column; gap: 20px; }
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <span style="color:#e8c96a;font-style:italic;font-size:1.1rem">Golden Crumb Bakery</span>
-  <div><a href="#menu">Menu</a><a href="#about">Story</a><a href="#contact">Contact</a></div>
-</nav>
 
-<div class="hero">
-  <h1>Golden Crumb <em>Bakery</em></h1>
-  <p>Baked fresh every morning — made with love, tradition, and the finest ingredients.</p>
-  <a href="#contact" class="btn">Order Now</a>
-</div>
-
-<section id="menu">
-  <h2>Our Menu</h2>
-  <div class="grid">
-    <div class="card"><div class="card-top"><h3>Croissants</h3><span class="price">$3.00</span></div><p>Flaky, buttery layers baked golden every morning.</p></div>
-    <div class="card"><div class="card-top"><h3>Sourdough</h3><span class="price">$7.00</span></div><p>Naturally leavened with a crispy crust and chewy crumb.</p></div>
-    <div class="card"><div class="card-top"><h3>Cinnamon Rolls</h3><span class="price">$4.00</span></div><p>Swirled with cinnamon and topped with creamy icing.</p></div>
-    <div class="card"><div class="card-top"><h3>Cookies</h3><span class="price">$2.50</span></div><p>Thick, chewy, and baked fresh daily.</p></div>
-    <div class="card"><div class="card-top"><h3>Muffins</h3><span class="price">$2.50</span></div><p>Rotating seasonal flavors with a golden top.</p></div>
-    <div class="card"><div class="card-top"><h3>Custom Cakes</h3><span class="price">$35+</span></div><p>Made to order for any celebration.</p></div>
-  </div>
-</section>
-
-<section class="about" id="about">
-  <h2>Our Story</h2>
-  <p>Founded in 2005, Golden Crumb is a family-owned bakery dedicated to baking delicious goods every morning using natural, quality ingredients passed down through generations.</p>
-</section>
-
-<section class="contact" id="contact">
-  <div class="contact-grid">
-    <div>
-      <h2>Visit Us</h2>
-      <div class="info">
-        📍 123 Main St, Springfield, USA<br>
-        🕐 Open 7am – 5pm, 7 Days a Week<br>
-        📞 (555) 123-4567<br>
-        ✉️ hello@goldencrumb.com
+  <nav>
+    <div class="nav-logo">
+      <!-- SVG LOGO -->
+      <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="21" cy="21" r="20" fill="#fdf8f0" stroke="#c4872a" stroke-width="1.5"/>
+        <!-- Bread loaf shape -->
+        <path d="M10 26 Q10 18 21 17 Q32 18 32 26 L32 28 Q32 30 30 30 L12 30 Q10 30 10 28 Z" fill="#c4872a" opacity="0.9"/>
+        <!-- Bread top curve -->
+        <path d="M13 26 Q13 21 21 20 Q29 21 29 26" fill="#e8a84a" opacity="0.8"/>
+        <!-- Steam lines -->
+        <path d="M17 16 Q17.5 14 17 12" stroke="#c4872a" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M21 15 Q21.5 13 21 11" stroke="#c4872a" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M25 16 Q25.5 14 25 12" stroke="#c4872a" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="logo-name">Golden Crumb</span>
+        <span class="logo-tagline">Artisan Bakery</span>
       </div>
     </div>
-    <div class="form">
-      <input type="text" placeholder="Your name">
-      <input type="email" placeholder="your@email.com">
-      <textarea placeholder="Your message..."></textarea>
-      <a href="#" class="btn">Send Message</a>
+    <ul>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#visit">Visit Us</a></li>
+      <li><a href="#visit" class="nav-order">Order Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1800&q=85&auto=format&fit=crop" alt="Fresh baked bread">
+    </div>
+    <div class="hero-content">
+      <span class="hero-tag">Artisan Bakery · Est. 2005</span>
+      <h1>Baked Fresh<br>Every <em>Morning</em><br>With Love</h1>
+      <p class="hero-desc">Made with natural ingredients, family recipes, and the kind of care that turns a simple loaf into something worth waking up for.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-primary">See Our Menu</a>
+        <a href="#about" class="btn-ghost">Our Story</a>
+      </div>
+      <div class="hero-info">
+        <div>
+          <div class="hero-info-label">Hours</div>
+          <div class="hero-info-val">7am – 5pm Daily</div>
+        </div>
+        <div>
+          <div class="hero-info-label">Location</div>
+          <div class="hero-info-val">123 Main St, Springfield</div>
+        </div>
+        <div>
+          <div class="hero-info-label">Est.</div>
+          <div class="hero-info-val">Since 2005</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">▼ scroll</div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">20+</div>
+      <div class="stat-label">Years Baking</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Natural Ingredients</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30+</div>
+      <div class="stat-label">Menu Items</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Daily</div>
+      <div class="stat-label">Fresh Baked</div>
     </div>
   </div>
-</section>
 
-<footer>© 2005–2026 Golden Crumb Bakery · All Rights Reserved</footer>
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <div class="section-header">
+      <span class="tag">Fresh Daily</span>
+      <h2>Baked with <em>Care</em></h2>
+      <p>Everything made from scratch every single morning.</p>
+    </div>
+    <div class="menu-tabs">
+      <button class="tab active" onclick="switchTab('breads', this)">Breads</button>
+      <button class="tab" onclick="switchTab('pastries', this)">Pastries</button>
+      <button class="tab" onclick="switchTab('specials', this)">Specials</button>
+    </div>
+
+    <div id="breads" class="menu-panel active">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=600&q=80&auto=format&fit=crop" alt="Sourdough">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h4>Classic Sourdough</h4>
+              <span class="menu-price">$7</span>
+            </div>
+            <p>Naturally leavened with a crispy crust and chewy, open crumb. 24-hour fermentation.</p>
+            <span class="menu-tag">⭐ Best Seller</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1585478259715-876acc5be8eb?w=600&q=80&auto=format&fit=crop" alt="Baguette">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h4>French Baguette</h4>
+              <span class="menu-price">$4</span>
+            </div>
+            <p>Thin, golden crust with a light airy interior. Baked twice daily.</p>
+            <span class="menu-tag">🌿 Vegan</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80&auto=format&fit=crop" alt="Multigrain">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h4>Multigrain Loaf</h4>
+              <span class="menu-price">$8</span>
+            </div>
+            <p>Packed with sunflower seeds, oats, and flaxseed. Hearty and wholesome.</p>
+            <span class="menu-tag">🌿 Vegan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="pastries" class="menu-panel">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80&auto=format&fit=crop" alt="Croissant">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h4>Butter Croissant</h4>
+              <span class="menu-price">$3</span>
+            </div>
+            <p>Flaky, buttery layers folded 27 times for the perfect laminated pastry.</p>
+            <span class="menu-tag">⭐ Best Seller</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80&auto=format&fit=crop" alt="Cinnamon Roll">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h4>Cinnamon Roll</h4>
+              <span class="menu-price">$4</span>
+            </div>
+            <p>Swirled with brown sugar cinnamon filling, topped with creamy vanilla icing.</p>
+            <span class="menu-tag">✨ Fan Favorite</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&q=80&auto=format&fit=crop" alt="Cookies">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h4>House Cookies</h4>
+              <span class="menu-price">$2.50</span>
+            </div>
+            <p>Thick, chewy, and baked fresh daily. Rotating flavors — chocolate chip, oatmeal, snickerdoodle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="specials" class="menu-panel">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&q=80&auto=format&fit=crop" alt="Custom Cake">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h4>Custom Celebration Cake</h4>
+              <span class="menu-price">$35+</span>
+            </div>
+            <p>Made to order for birthdays, weddings, and any occasion. Contact us 48 hours in advance.</p>
+            <span class="menu-tag">📞 Order Ahead</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1519915028121-7d3463d5b1ff?w=600&q=80&auto=format&fit=crop" alt="Muffins">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h4>Seasonal Muffins</h4>
+              <span class="menu-price">$2.50</span>
+            </div>
+            <p>Rotating seasonal flavors with a golden domed top. Blueberry, lemon poppy, banana walnut.</p>
+            <span class="menu-tag">✨ Seasonal</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80&auto=format&fit=crop" alt="Pastry Box">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h4>Pastry Gift Box</h4>
+              <span class="menu-price">$22</span>
+            </div>
+            <p>A curated selection of our best pastries, beautifully packaged. Perfect for gifting.</p>
+            <span class="menu-tag">🎁 Great Gift</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-icon">✦</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-label">Our Story</div>
+    <div class="about-content">
+      <h2>Rooted in <em>Tradition</em>,<br>Baked with Heart</h2>
+      <p>Founded in 2005, Golden Crumb is a <strong>family-owned bakery</strong> built on a simple belief — that great bread doesn't need shortcuts. Every loaf, every pastry, every cookie is made by hand using natural ingredients and recipes passed down through generations.</p>
+      <p>We bake fresh every single morning, starting at 4am, so that when you walk through our doors the smell of warm bread fills the air. We believe baking is an act of love, and we put that love into everything we make.</p>
+      <div class="about-badges">
+        <span class="badge">🌾 Natural Ingredients</span>
+        <span class="badge">👨‍👩‍👧 Family Owned</span>
+        <span class="badge">🕓 Baked Fresh Daily</span>
+        <span class="badge">❤️ Est. 2005</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="visit" id="visit">
+    <div class="visit-block">
+      <h3>Hours</h3>
+      <div class="hours-row"><span>Monday – Friday</span><span>7am – 5pm</span></div>
+      <div class="hours-row"><span>Saturday</span><span>7am – 4pm</span></div>
+      <div class="hours-row"><span>Sunday</span><span>8am – 2pm</span></div>
+      <div class="hours-row"><span>Fresh Bread Ready</span><span>By 7am Daily</span></div>
+    </div>
+    <div class="visit-block">
+      <h3>Find Us</h3>
+      <address>
+        123 Main Street<br>
+        Springfield, USA 00000<br><br>
+        📞 (555) 123-4567<br>
+        ✉️ hello@goldencrumb.com
+      </address>
+    </div>
+    <div class="order-block visit-block">
+      <h3>Order Ahead</h3>
+      <p>Planning a party or want to guarantee your favorite loaf? Order ahead and we'll have it ready for pickup.</p>
+      <a href="mailto:hello@goldencrumb.com" class="btn-order">Place an Order</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2005–2026 Golden Crumb Bakery · All Rights Reserved</p>
+    <div class="footer-logo">Golden Crumb</div>
+    <div class="footer-links">
+      <a href="#menu">Menu</a>
+      <a href="#about">Story</a>
+      <a href="#visit">Visit</a>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(panel, btn) {
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(panel).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+
 </body>
 </html>
